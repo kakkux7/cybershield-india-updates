@@ -1,9 +1,11 @@
 {
   "schemaVersion": 1,
   "channel": "beta",
-  "latestVersion": "0.9.1",
-  "versionCode": 11,
+  "latestVersion": "0.9.2",
+  "versionCode": 12,
   "published": true,
-  "releasePage": "https://github.com/kakkux7/cybershield-india-updates/releases/tag/v0.9.1",
-  "releaseNotes": "CyberShield India v0.9.1 - Improved update checking, app security reports, and bug fixes."
+  "releasePage": "https://github.com/kakkux7/cybershield-india-updates/releases/tag/v0.9.2",
+  "releaseNotes": "CyberShield India v0.9.2 - Added verified in-app APK downloads, Android installation controls, signing-certificate checks and clearer update conflict warnings.",
+  "apkUrl": "https://github.com/kakkux7/cybershield-india-updates/releases/download/v0.9.2/CyberShield-India-v0.9.2.apk",
+  "apkSha256": "0b5cceb350e912c68b527b35ad215c9baf81e577518d775dc0863fde6cb8bad3"
 }
