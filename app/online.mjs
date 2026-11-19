@@ -66,7 +66,7 @@ async function call(kind,payload={}){
   if(native())return new Promise((resolve,reject)=>{
     pending.set(id,{resolve,reject});
     try{window.CyberShieldAndroid.onlineRequest(kind,JSON.stringify(payload),id);}catch(e){pending.delete(id);reject(e);}
-    setTimeout(()=>{if(pending.has(id)){pending.delete(id);reject(Error('Network request timed out. No verified result.'));}},15500);
+    setTimeout(()=>{if(pending.has(id)){pending.delete(id);reject(Error('Network request timed out. No verified result.'));}},90000);
   });
   const endpoint={status:'/api/status',updates:'/api/updates',reputation:'/api/reputation',phone:'/api/phone-lookup',companion:'/api/companion',fileHash:'/api/file-reputation',domain:'/api/domain-details'}[kind];
   if(!endpoint)throw Error('Unsupported online request');
@@ -102,6 +102,7 @@ window.CyberShieldOnlineReceive=(id,report)=>{
   item.resolve(report.data||{});
 };
 async function connectivity(){
+  put('cs-connectivity-message','Connecting to the CyberShield online server… Render Free hosting may take about a minute to wake up. No paid AI or reputation services are enabled.');
   try{
     const d=await call('status');status=d;
     if($('cs-connectivity-light'))$('cs-connectivity-light').style.color=d.dnsEvidenceSupported?'#26cf96':'#f3be60';
