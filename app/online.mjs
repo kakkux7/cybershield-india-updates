@@ -6,7 +6,7 @@ import { compareVersion, isTrustedReleasePage, newerRelease } from './release-po
 const $ = id => document.getElementById(id);
 const put=(id,message)=>{const e=$(id);if(e){e.hidden=false;e.textContent=String(message);}};
 const native=()=>typeof window.CyberShieldAndroid?.onlineRequest==='function';
-const APP_VERSION='0.9.4';
+const APP_VERSION='0.9.5';
 let latestRelease='',lastQRUrl='',counter=0;
 const pending=new Map();
 let status={reputationConfigured:false,phoneConfigured:false,remoteAIConfigured:false};
@@ -68,6 +68,27 @@ async function call(kind,payload={}){
     try{window.CyberShieldAndroid.onlineRequest(kind,JSON.stringify(payload),id);}catch(e){pending.delete(id);reject(e);}
     setTimeout(()=>{if(pending.has(id)){pending.delete(id);reject(Error('Network request timed out. No verified result.'));}},90000);
   });
+  if(kind==='updates'){
+    // A public signed release is authoritative even when the deployed backend is older.
+    try{
+      const r=await fetch('https://raw.githubusercontent.com/kakkux7/cybershield-india-updates/main/latest.json',
+        {cache:'no-store',headers:{Accept:'application/json'},signal:AbortSignal.timeout(8000)});
+      if(!r.ok)throw Error('Official release feed unavailable');
+      const d=await r.json();
+      if(d.schemaVersion!==1 || d.channel!=='beta' ||
+         !/^\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(d.latestVersion) ||
+         !Number.isSafeInteger(d.versionCode) || d.versionCode<1 || typeof d.published!=='boolean')
+        throw Error('Invalid release metadata');
+      if(d.published){
+        const version=d.latestVersion;
+        if(!isTrustedReleasePage(d.releasePage) ||
+           d.releasePage!=='https://github.com/kakkux7/cybershield-india-updates/releases/tag/v'+version ||
+           d.apkUrl!=='https://github.com/kakkux7/cybershield-india-updates/releases/download/v'+version+'/CyberShield-India-v'+version+'.apk' ||
+           !/^[0-9a-fA-F]{64}$/.test(d.apkSha256))throw Error('Unverified signed-release details');
+      }
+      return {...d,checked:true,feedConfigured:true};
+    }catch{return fallback('updates',payload);}
+  }
   // Static public site may call only the fixed owner-controlled Render API.
   // The main Render-hosted web app uses same-origin requests instead.
   const hostedOnGithub=typeof location!=='undefined' && location.hostname==='kakkux7.github.io'
@@ -83,19 +104,6 @@ async function call(kind,payload={}){
     if(!res.ok)throw Error(typeof data.detail==='string'?data.detail:'Server response '+res.status);
     return data;
   }catch(error){
-    if(kind==='updates') {
-      // The app can check releases even without a deployed fraud-detection API.
-      // Only a public, owner-controlled HTTPS release feed is trusted.
-      try {
-        const url='https://raw.githubusercontent.com/kakkux7/cybershield-india-updates/main/latest.json';
-        const r=await fetch(url,{cache:'no-store',headers:{Accept:'application/json'},signal:AbortSignal.timeout(6500)});
-        if(!r.ok)throw Error('Release feed not published');
-        const d=await r.json();
-        if(!/^\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(d.latestVersion) || !Number.isInteger(d.versionCode))throw Error('Invalid metadata');
-        if(d.published && !isTrustedReleasePage(d.releasePage))throw Error('Untrusted release URL');
-        return {...d,checked:true,feedConfigured:true};
-      }catch{return fallback('updates',payload);}
-    }
     if(['status','reputation','phone','fileHash'].includes(kind))return fallback(kind,payload);
     throw error;
   }
@@ -174,14 +182,14 @@ async function askAI(){
   if(!$('ai-opt-in')?.checked){put('companion-result','Consent required before sending a question to remote AI. Remove private details.');return;}
   put('companion-result','Consulting the configured online security assistant…');
   try{const data=await call('companion',{question:q});put('companion-result',(data.source||'AI')+' advice (NOT a verified security verdict):\n'+data.answer+'\n\n'+(data.important||'Do not share private data with AI.'));}
-  catch(e){put('companion-result','Remote AI is not configured: '+e.message+'. Use offline Safety Companion for immediate guidance.');}
+  catch(e){put('companion-result','Remote AI request was unsuccessful: '+e.message+'. Use offline Safety Companion for immediate guidance.');}
 }
 function installedVersion(){
   try{return native() && window.CyberShieldAndroid.appVersion ? window.CyberShieldAndroid.appVersion() : APP_VERSION;}
   catch{return APP_VERSION;}
 }
 function installedVersionCode(){
-  try{return native() && window.CyberShieldAndroid.appVersionCode ? Number(window.CyberShieldAndroid.appVersionCode()) : 14;}
+  try{return native() && window.CyberShieldAndroid.appVersionCode ? Number(window.CyberShieldAndroid.appVersionCode()) : 15;}
   catch{return 9;}
 }
 let lastUpdateCheck=0;
