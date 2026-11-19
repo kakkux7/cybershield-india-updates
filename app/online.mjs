@@ -68,12 +68,17 @@ async function call(kind,payload={}){
     try{window.CyberShieldAndroid.onlineRequest(kind,JSON.stringify(payload),id);}catch(e){pending.delete(id);reject(e);}
     setTimeout(()=>{if(pending.has(id)){pending.delete(id);reject(Error('Network request timed out. No verified result.'));}},90000);
   });
+  // Static public site may call only the fixed owner-controlled Render API.
+  // The main Render-hosted web app uses same-origin requests instead.
+  const hostedOnGithub=typeof location!=='undefined' && location.hostname==='kakkux7.github.io'
+    && location.pathname.startsWith('/cybershield-india-updates/app/');
+  const apiBase=hostedOnGithub?'https://cybershield-india-beta.onrender.com':'';
   const endpoint={status:'/api/status',updates:'/api/updates',reputation:'/api/reputation',phone:'/api/phone-lookup',companion:'/api/companion',fileHash:'/api/file-reputation',domain:'/api/domain-details'}[kind];
   if(!endpoint)throw Error('Unsupported online request');
   try{
-    const res=await fetch(endpoint,{method:['status','updates'].includes(kind)?'GET':'POST',
-      headers:{'Content-Type':'application/json'},credentials:'same-origin',cache:'no-store',
-      body:['status','updates'].includes(kind)?undefined:JSON.stringify(payload),signal:AbortSignal.timeout(11000)});
+    const res=await fetch(apiBase+endpoint,{method:['status','updates'].includes(kind)?'GET':'POST',
+      headers:{'Content-Type':'application/json'},credentials:'omit',cache:'no-store',
+      body:['status','updates'].includes(kind)?undefined:JSON.stringify(payload),signal:AbortSignal.timeout(90000)});
     let data;try{data=await res.json();}catch{throw Error('No CyberShield backend at this address.');}
     if(!res.ok)throw Error(typeof data.detail==='string'?data.detail:'Server response '+res.status);
     return data;
@@ -168,7 +173,7 @@ async function askAI(){
   const q=$('companion-question')?.value?.trim();if(!q){put('companion-result','Enter a question.');return;}
   if(!$('ai-opt-in')?.checked){put('companion-result','Consent required before sending a question to remote AI. Remove private details.');return;}
   put('companion-result','Consulting the configured online security assistant…');
-  try{const data=await call('companion',{question:q});put('companion-result','AI advice (not a verified security verdict):\n'+data.answer);}
+  try{const data=await call('companion',{question:q});put('companion-result',(data.source||'AI')+' advice (NOT a verified security verdict):\n'+data.answer+'\n\n'+(data.important||'Do not share private data with AI.'));}
   catch(e){put('companion-result','Remote AI is not configured: '+e.message+'. Use offline Safety Companion for immediate guidance.');}
 }
 function installedVersion(){
