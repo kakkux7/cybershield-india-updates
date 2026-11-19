@@ -1,0 +1,27 @@
+/* CyberShield v0.3 defensive tools — responsive additions */
+.cyber-tools {margin:20px 0 28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+.cyber-tool {min-width:0;padding:21px;border:1px solid #335968;border-radius:19px;background:linear-gradient(140deg,#122c3c,#0e2231);}
+.cyber-tool h3{margin:0 0 7px;font-size:17px;color:#e5fff2;letter-spacing:-.2px;}
+.cyber-tool p{font-size:12px;line-height:1.65;color:#a9c3cd;margin:0 0 14px;}
+.cyber-tool textarea,.cyber-tool input,.cyber-tool select{width:100%;display:block;background:#091d2b;border:1px solid #416070;color:#e9fff8;padding:12px;border-radius:10px;font:inherit;font-size:13px;margin:10px 0 12px;box-sizing:border-box;}
+.cyber-tool textarea{resize:vertical;min-height:90px;}
+.cyber-tool .btn{margin:4px 6px 4px 0;padding:11px 14px;border-radius:11px;}
+.cyber-tool--wide{grid-column:1/-1;}
+.cyber-output{margin-top:12px;padding:12px;border-radius:12px;background:#0b1d2c;border:1px solid #315468;font-size:12px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;color:#d9efef;}
+.cyber-output[hidden]{display:none;}
+.cyber-output strong{color:#aaffdf;}
+.cyber-output ul{padding-left:19px;margin:8px 0;}
+.cyber-output li{margin-bottom:8px;}
+.cyber-mini{font-size:11px!important;color:#95b5c2!important;}
+.cyber-pill{padding:4px 10px;border:1px solid #56757b;border-radius:50px;font-size:11px;color:#d3f6ef;display:inline-block;margin:3px;}
+.cyber-warning{padding:12px;background:#302c26;border:1px solid #6b5b37;border-radius:12px;color:#fce1a8!important;}
+.cyber-app-list{max-height:430px;overflow:auto;display:grid;gap:8px;margin-top:12px;}
+.cyber-app-card{border:1px solid #355362;border-radius:12px;padding:11px;background:#102836;}
+.cyber-app-card .cyber-app-head{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.cyber-app-card button{background:#234b4b;color:#cff7e9;border:1px solid #549d87;border-radius:8px;padding:6px 11px;font-size:11px;}
+.cyber-app-card summary{cursor:pointer;font-weight:750;}
+.cyber-quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0 22px;}
+.cyber-quick-grid button{background:#163846;color:#c8ffe8;border:1px solid #3d786b;border-radius:12px;padding:14px;text-align:left;font-weight:700;cursor:pointer;}
+.cyber-quick-grid button:hover{border-color:#7cddbc;}
+.cyber-status{font-size:12px;color:#aed2d5;}
+@media(max-width:730px){.cyber-tools{grid-template-columns:1fr;gap:11px}.cyber-tool{padding:16px}.cyber-tool--wide{grid-column:auto;}.cyber-quick-grid{grid-template-columns:1fr 1fr}}

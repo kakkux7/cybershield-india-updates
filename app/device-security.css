@@ -1,0 +1,13 @@
+.cs-security-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px;margin:20px 0}
+.cs-security-card{background:#0e2330;border:1px solid #315257;border-radius:18px;padding:20px;min-width:0}
+.cs-security-card h3{font-size:19px;margin:0 0 8px;color:#dafff3}
+.cs-security-card p,.cs-security-card label{line-height:1.5;color:#a8c6ce}
+.cs-security-card .btn{margin:8px 8px 8px 0}
+.cs-security-card input[type=file]{max-width:100%;width:100%;padding:9px;margin-bottom:10px}
+.cs-security-card input[type=checkbox]{width:auto;margin-right:6px}
+.cs-file-card{background:#0b1c29;padding:13px;border:1px solid #325965;border-radius:12px;margin:10px 0;overflow-wrap:anywhere}
+.cs-file-card strong{color:#f5fffa}
+.cs-file-warning{color:#ffbd93}
+.cs-file-hash{font:11px ui-monospace,monospace;overflow-wrap:anywhere;color:#9fc9c7}
+.cs-security-report{white-space:pre-wrap;word-break:break-word;line-height:1.55;color:#d2e8e8;margin-top:10px}
+.cs-info-note{background:#122632;padding:12px;border-left:3px solid #69dcca;border-radius:8px;color:#c2d6db;margin-top:12px}

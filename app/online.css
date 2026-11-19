@@ -1,0 +1,11 @@
+
+.cs-online-status{display:flex;align-items:center;gap:10px;margin:12px 0;padding:12px 14px;border-radius:12px;background:#10283a;color:#cfe1ef;font-size:.87rem;line-height:1.45}
+#cs-connectivity-light{color:#f3be60;font-size:1.3rem}
+.cs-ver-pill{font-size:.72rem;color:#a6f6d9;background:#164437;padding:5px 9px;border-radius:24px}
+#updates-panel .btn{margin:5px 8px 6px 0;min-width:150px}
+#cs-update-details{white-space:pre-wrap}
+#number-online-result,#qr-online-result{white-space:pre-wrap}
+.cyber-tool input[type=checkbox]{display:inline;width:auto;margin-right:8px;accent-color:#3cdeb2}
+
+.cs-update-banner{width:100%;display:block;text-align:left;padding:12px 16px;margin:16px 0;border:1px solid #53bc98;background:#123e3d;color:#dafdeb;border-radius:14px;font-weight:700;cursor:pointer}
+.cs-update-banner[hidden]{display:none!important}

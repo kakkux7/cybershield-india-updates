@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1523" />
+  <meta name="description" content="CyberShield India Beta — a privacy-first link and message checker for suspicious links and scam messages." />
+  <meta name="color-scheme" content="dark" />
+  <link rel="icon" href="./icons/icon-192.png" type="image/png" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./ui-refresh.css" /><link rel="stylesheet" href="./extras.css" />
+  <title>CyberShield India · Beta</title>
+  <link rel="stylesheet" href="./easy-touch.css" /><link rel="stylesheet" href="./online.css" /><link rel="stylesheet" href="./device-security.css" /><link rel="stylesheet" href="./trust-insights.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none"><path d="M18 3 31 8v9c0 8-5.8 13.8-13 16C10.8 30.8 5 25 5 17V8L18 3Z" stroke="currentColor" stroke-width="2.4"/><path d="m12 18 4 4 8-9" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>CyberShield <small>INDIA · BETA</small></span></div>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav" aria-label="Main navigation">
+        <button class="nav-btn active" data-page="home" type="button" aria-current="page"><span class="nav-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/></svg></span><span class="nav-label">Home</span><span class="nav-chevron" aria-hidden="true">›</span></button>
+        <button class="nav-btn" data-page="links" type="button"><span class="nav-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7.1-7.1l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7.1 7.1l1.7-1.7"/></svg></span><span class="nav-label">Links</span><span class="nav-chevron" aria-hidden="true">›</span></button>
+        <button class="nav-btn" data-page="messages" type="button"><span class="nav-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8A8.5 8.5 0 0 1 12.5 20a8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 3.9a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/><path d="M8 12h8M8 9h5"/></svg></span><span class="nav-label">Messages</span><span class="nav-chevron" aria-hidden="true">›</span></button>
+        <button class="nav-btn" data-page="apps" type="button"><span class="nav-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M9 7h6M9 11h6M10 17h4"/></svg></span><span class="nav-label">Apps</span><span class="nav-chevron" aria-hidden="true">›</span></button>
+        <button class="nav-btn" data-page="guide" type="button"><span class="nav-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 22 1.3-4.4 4.4 1.3L16.4 14l4.3-2-4.3-2 1.3-4.9L13.3 6 12 1.5 10.7 6 6.3 5.1 7.6 10l-4.3 2 4.3 2-1.3 4.9 4.4-1.3L12 22Z"/></svg></span><span class="nav-label">Guide</span><span class="nav-chevron" aria-hidden="true">›</span></button>
+      </nav>
+      <div class="sidebar-bottom"><div class="privacy-card"><span class="privacy-dot"></span><strong>Private by design</strong><p>Local scans stay on your device. Online checks only send data when you consent.</p></div><div class="sidebar-footer">Version 0.9.3 · Evidence-led beta</div></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div class="mobile-brand"><span class="brand-mark">✦</span><b>CyberShield <span>India</span></b></div><span class="topbar-label">CYBER SAFETY PLATFORM</span><div class="right-info"><span class="online-indicator"></span> ON-DEVICE ANALYSIS <span class="beta-tag">BETA v0.9.3</span></div></header>
+      <div class="content">
+        <section class="page" id="page-home">
+          <div class="home-intro"><span class="home-intro-mark"><span class="pulse-dot"></span> YOUR DIGITAL SAFETY DESK</span><span class="home-intro-side">INDIA · PRIVATE BETA</span></div>
+          <div class="welcome-panel">
+            <div class="welcome-copy">
+              <span class="welcome-kicker">STAY SHARP. STAY SECURE.</span>
+              <h1>Make every click<br/><em>a safer one.</em></h1>
+              <p>Before you tap, reply or pay, take a moment to check. CyberShield helps you notice common scam warning signs.</p>
+              <div class="welcome-buttons"><button class="btn btn-primary" type="button" data-jump="links"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7.1-7.1l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7.1 7.1l1.7-1.7"/></svg> Scan a link <svg class="button-arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><button class="btn btn-secondary" type="button" data-jump="messages"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8A8.5 8.5 0 0 1 12.5 20a8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 3.9a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/><path d="M8 12h8M8 9h5"/></svg> Check a message</button></div>
+              <div class="trust-chips"><span><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Local checks</span><span><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/><path d="m9 12 2 2 4-4"/></svg> Privacy first</span><span>✦ Offline checks + DNS evidence</span></div>
+            </div>
+            <div class="welcome-illustration" aria-hidden="true"><div class="halo halo-one"></div><div class="halo halo-two"></div><div class="halo halo-three"></div><div class="hero-shield"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/><path d="m9 12 2 2 4-4"/></svg></div><div class="signal-chip signal-chip-top">SCAM AWARENESS</div><div class="signal-chip signal-chip-bottom"><span>●</span> ON-DEVICE</div></div>
+          </div>
+          <button class="cs-update-banner" id="cs-update-banner" data-jump="guide" type="button" hidden>↻ CyberShield update available — open Guide to review changes</button>
+          <div class="cs-home-action"><div><strong>Worried about an installed app?</strong><p>Review one app’s permissions and install source on Android — in plain language.</p></div><button type="button" class="btn btn-primary" data-jump="apps">Review an app</button></div><div class="safety-disclaimer" role="note"><span class="safety-disclaimer-icon">!</span><div><strong>Know what this beta does.</strong><p>It flags warning signs and can review visible installed-app permissions on Android. It cannot prove anything is 100% safe, detect every virus, or secretly monitor other apps.</p></div></div>
+          <div class="overview-heading"><div><span class="section-kicker">YOUR OVERVIEW</span><h2>Safety starts here</h2></div><span class="overview-caption">Current session</span></div>
+          <div class="stats home-stats"><div class="stat"><span class="stat-icon green"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7.1-7.1l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7.1 7.1l1.7-1.7"/></svg></span><div><div class="stat-value" id="links-count">0</div><div class="stat-label">Links checked</div></div></div><div class="stat"><span class="stat-icon purple"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8A8.5 8.5 0 0 1 12.5 20a8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 3.9a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/><path d="M8 12h8M8 9h5"/></svg></span><div><div class="stat-value" id="messages-count">0</div><div class="stat-label">Messages reviewed</div></div></div><div class="stat"><span class="stat-icon gold"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><div><div class="stat-value">Local</div><div class="stat-label">Checks stay on your device</div></div></div></div>
+          <div class="overview-heading tool-heading"><div><span class="section-kicker">EXPLORE TOOLS</span><h2>What do you want to check?</h2></div></div>
+          <div class="action-tiles">            <button class="action-tile action-tile--links" data-jump="links" type="button">
+              <span class="action-tile-head"><span class="action-tile-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7.1-7.1l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7.1 7.1l1.7-1.7"/></svg></span><span class="action-tile-arrow"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+              <span class="action-tile-kicker">01 / LINK INTELLIGENCE</span>
+              <span class="action-tile-title">Check a link</span>
+              <span class="action-tile-description">Spot misleading domains, impersonation clues and risky download patterns.</span>
+            </button>            <button class="action-tile action-tile--messages" data-jump="messages" type="button">
+              <span class="action-tile-head"><span class="action-tile-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8A8.5 8.5 0 0 1 12.5 20a8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 3.9a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/><path d="M8 12h8M8 9h5"/></svg></span><span class="action-tile-arrow"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+              <span class="action-tile-kicker">02 / SCAM SIGNALS</span>
+              <span class="action-tile-title">Analyze a message</span>
+              <span class="action-tile-description">Review suspicious SMS, chat messages and payment requests.</span>
+            </button>            <button class="action-tile action-tile--apps" data-jump="apps" type="button">
+              <span class="action-tile-head"><span class="action-tile-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M9 7h6M9 11h6M10 17h4"/></svg></span><span class="action-tile-arrow"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+              <span class="action-tile-kicker">03 / APP PERMISSIONS</span>
+              <span class="action-tile-title">Inspect an APK</span>
+              <span class="action-tile-description">Look at declared APK permissions before deciding whether to install.</span>
+            </button>            <button class="action-tile action-tile--guide" data-jump="guide" type="button">
+              <span class="action-tile-head"><span class="action-tile-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 22 1.3-4.4 4.4 1.3L16.4 14l4.3-2-4.3-2 1.3-4.9L13.3 6 12 1.5 10.7 6 6.3 5.1 7.6 10l-4.3 2 4.3 2-1.3 4.9 4.4-1.3L12 22Z"/></svg></span><span class="action-tile-arrow"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+              <span class="action-tile-kicker">04 / TAKE ACTION</span>
+              <span class="action-tile-title">Safety & reporting</span>
+              <span class="action-tile-description">Know what to do after a scam. Find official Indian reporting resources.</span>
+            </button></div>
+          <div class="home-help"><div class="home-help-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/><path d="m9 12 2 2 4-4"/></svg></div><div><strong>Something suspicious happened?</strong><p>If you lost money to cyber fraud in India, call <strong>1930</strong> promptly and contact your bank.</p></div><button type="button" class="home-help-cta" data-jump="guide">View safety guide <svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+          <div class="cs-developer"><span class="cs-dev-label">Designed & developed by</span><a data-cs-developer href="https://www.instagram.com/aslam_07._/" target="_blank" rel="noopener noreferrer" aria-label="Open developer aslammubarak Instagram profile">aslammubarak ↗</a></div><footer class="footer">CyberShield India · Independent beta · Not affiliated with the Government of India.</footer>
+        </section>
+        <section class="page hidden" id="page-links">
+          <div class="eyebrow">TOOL 01 / LINK CHECKER</div><h1 class="page-title">Check before <em>you click.</em></h1><p class="page-sub">Paste a website address. We analyze its structure locally without visiting the website.</p>
+          <div class="scan-grid"><div class="panel"><div class="panel-heading"><div class="panel-icon">↗</div><div><h2>Website link analysis</h2><p>Local risk analysis + automatic online DNS evidence (no website visit)</p></div></div><form id="link-form"><label for="url-input">Suspicious URL</label><textarea id="url-input" rows="3" maxlength="2048" placeholder="https://example.com/verify-account" spellcheck="false" autocapitalize="off" autocomplete="off" required></textarea><div class="example-row"><span>Try an example:</span><button type="button" id="example-risky">Suspicious URL</button><button type="button" id="example-normal">Familiar site</button></div><button class="btn btn-primary full" type="submit">Analyze this link <span>↗</span></button></form><div class="small-print">🔒 Local content checks stay on your device. After clicking Analyze, CyberShield queries DNS for the domain only. Full-URL reputation checks require separate consent.</div><div id="cs-auto-dns" class="cyber-output" role="status" aria-live="polite" hidden></div><div id="cs-link-evidence" class="cs-evidence" role="status" aria-live="polite" hidden></div></div><div class="panel result-panel" aria-live="polite" id="link-result"><div class="empty-state"><div class="empty-glyph">◎</div><h3>Your scan report appears here</h3><p>Enter a URL and run a check to see an explainable result.</p></div></div></div>
+
+          <div class="cyber-tools">
+            <div class="cyber-tool cyber-tool--wide">
+              <h3>🔍 Internet evidence and optional threat-list checks</h3>
+              <p>CyberShield automatically checks basic DNS evidence after you analyze a link. For licensed malware/phishing reputation, a secure server with an authorized provider is still required. DNS is not a safety verdict.</p>
+              <label><input style="width:auto;display:inline-block" type="checkbox" id="live-opt-in"/> I agree to send this URL to the configured security provider for a reputation lookup.</label>
+              <button id="live-lookup" class="btn btn-primary" type="button">Check all available online evidence</button>
+              <div id="live-result" class="cyber-output" hidden aria-live="polite"></div>
+              <p class="cyber-mini">Keyless DNS evidence works where Google Public DNS is reachable. A verified scam/malware blocklist requires an authorized provider; do not assume links are safe without it.</p>
+            </div>
+            <div class="cyber-tool">
+              <h3>▦ QR code image checker</h3>
+              <p>Select a QR screenshot or image. CyberShield reads the QR payload and explains risky website/payment instructions. Reading the QR does not verify the merchant.</p>
+              <input id="qr-file" type="file" accept="image/*" aria-label="Upload a QR code image"/>
+              <button id="qr-native" type="button" class="btn btn-primary" hidden>Pick QR image on Android</button>
+              <div class="cyber-output" id="qr-result" hidden aria-live="polite"></div><div id="cs-qr-evidence" class="cs-evidence" hidden aria-live="polite"></div><label class="cyber-mini"><input id="qr-online-consent" type="checkbox" /> If this QR contains a website link, I consent to an online threat-list lookup.</label><button id="qr-online" class="btn btn-secondary" type="button" disabled>Check QR website online</button><div id="qr-online-result" class="cyber-output" hidden aria-live="polite"></div>
+            </div>
+            <div class="cyber-tool">
+              <h3>☎ Suspicious phone number checker</h3>
+              <p>Check a number's format and learn what to verify. Numbering-plan format and region hints; optional provider-assisted carrier details. These signals cannot prove who is calling or whether they are fraudulent.</p>
+              <form id="phone-form"><input type="tel" id="phone-input" placeholder="+91 9876543210" aria-label="Phone number" required maxlength="40"/><button class="btn btn-primary" type="submit">Review number</button></form>
+              <div class="cyber-output" id="phone-result" hidden aria-live="polite"></div><div id="cs-phone-evidence" class="cs-evidence" hidden aria-live="polite"></div><label class="cyber-mini"><input id="number-consent" type="checkbox" /> I consent to checking available number metadata. A configured online provider may receive this number; no contacts are read.</label>
+              <button class="btn btn-secondary" id="number-online" type="button">Check number details online</button>
+              <div class="cyber-output" id="number-online-result" hidden aria-live="polite"></div>
+            </div>
+          </div>
+          <div class="cyber-output" id="url-breakdown" hidden aria-live="polite"></div>
+          <div class="cs-domain-card" id="cs-domain-lookup"><h3>Who registered this website address?</h3><p>Look up the public registrar and registration dates of the actual domain. This cannot identify the private owner, inspect website scripts, or prove trust.</p><label class="cyber-mini"><input type="checkbox" id="cs-domain-consent"/> I agree to check public domain-registration data (domain only, not the link path).</label><button type="button" class="btn btn-secondary" id="cs-domain-button">Check domain registration</button><div id="cs-domain-report" class="cyber-output" role="status" aria-live="polite" hidden></div></div>
+<div class="hint"><strong>Remember:</strong> HTTPS and familiar-looking domains are not proof of legitimacy. For banking, use the official app or type the official website address yourself.</div>
+        </section>
+        <section class="page hidden" id="page-messages">
+          <div class="eyebrow">TOOL 02 / MESSAGE CHECKER</div><h1 class="page-title">Questionable message?<br/><em>Check the signals.</em></h1><p class="page-sub">Paste suspicious messages in English, Hindi or Malayalam. This beta uses a small rule set, not an AI language model.</p>
+          <div class="scan-grid"><div class="panel"><div class="panel-heading"><div class="panel-icon violet-ico">▤</div><div><h2>Scam language analysis</h2><p>Detects several common tactics</p></div></div><form id="message-form"><label for="message-input">Message text</label><textarea id="message-input" class="message-textarea" rows="8" maxlength="5000" placeholder="Example: Urgent! Your bank account will be blocked. Click this link and share your OTP to complete KYC..." required></textarea><div class="example-row"><span>Try an example:</span><button type="button" id="example-message">Fake bank alert</button></div><button class="btn btn-primary full" type="submit">Analyze message <span>↗</span></button></form><div class="small-print">🔒 Text stays on your device.</div></div><div class="panel result-panel" id="message-result" aria-live="polite"><div class="empty-state"><div class="empty-glyph">▤</div><h3>Your message report appears here</h3><p>Paste a suspicious message to reveal detected scam tactics.</p></div></div></div><div id="cs-message-evidence-inline" class="cs-evidence" hidden aria-live="polite"></div>
+
+          <div class="cyber-tools"><div class="cyber-tool cyber-tool--wide">
+          <h3>▧ Screenshot scam checker</h3><p>Android: choose an image and on-device text recognition will find readable words for scam analysis. English/Latin script works best. The web demo currently requires pasting the text manually.</p>
+          <input id="screenshot-file" type="file" accept="image/*" aria-label="Choose a screenshot"/>
+          <button id="screenshot-native" class="btn btn-primary" type="button" hidden>Analyze screenshot on Android</button>
+          <label class="cyber-mini"><input type="checkbox" id="screenshot-consent" style="width:auto;display:inline-block"/> For web only: I agree to upload this screenshot to my configured CyberShield OCR server. I removed private secrets.</label>
+          <button type="button" class="btn btn-secondary" id="screenshot-web-ocr">Read screenshot text on server (optional)</button>
+          <div class="cyber-output" id="screenshot-result" hidden aria-live="polite"></div><div id="cs-message-evidence" class="cs-evidence" hidden aria-live="polite"></div></div></div>
+          <div class="hint"><strong>Privacy tip:</strong> Remove passwords, OTPs, Aadhaar numbers and personal details before sharing a message with anyone—even a checker.</div>
+        </section>
+        <section class="page hidden" id="page-apps">
+          <div class="eyebrow">TOOL 03 / MANUAL APP REVIEW</div><h1 class="page-title">Your apps. <em>Your control.</em></h1>
+          <p class="page-sub">Select a currently installed app to review its permissions, installation source and signing certificate. These checks are useful clues, not proof of malware or spying.</p>
+
+          <div class="cyber-tools"><div class="cyber-tool cyber-tool--wide">
+            <h3>▣ Review installed apps and permissions</h3>
+            <p>Android beta: inspect locally visible installed applications, including permissions that have been requested/granted. See which apps have camera or microphone access, and open their Android settings. This does NOT detect active spying or prove malware.</p>
+            <button type="button" class="btn btn-primary" id="installed-scan">Load installed apps</button><div class="cs-select-app"><label for="cs-app-select">Review a specific installed app</label><select id="cs-app-select" disabled><option value="">Load apps first…</option></select><button type="button" class="btn btn-secondary" id="cs-selected-app-button" disabled>Review selected app</button></div><div class="cs-security-report" id="cs-selected-app-report" role="status" aria-live="polite" hidden></div>
+            <button type="button" class="btn btn-secondary" id="privacy-settings">Open Android Privacy Dashboard</button>
+            <button type="button" class="btn btn-secondary" id="app-settings">Open Android app settings</button><button type="button" class="btn btn-secondary" id="cs-phone-check" >Review phone security settings</button>
+            <div id="cs-app-evidence" class="cs-evidence" hidden aria-live="polite"></div><div class="cyber-output" id="installed-result" hidden aria-live="polite"></div>
+            <input id="app-search" type="search" placeholder="Search your installed apps…" hidden aria-label="Search installed apps"/>
+            <div id="app-list" class="cyber-app-list" hidden></div>
+            <p class="cyber-mini">Screen recording is controlled by separate Android consent and indicators. Actual past camera/microphone use is shown by Android Privacy Dashboard, not inferred from permissions.</p>
+          </div></div>
+          <div class="panel" style="min-height:0">
+            <div class="panel-heading"><div class="panel-icon">⬡</div><div><h2>APK permission inspector</h2><p>Android only · File chosen by you · No upload</p></div></div>
+            <button id="choose-apk" class="btn btn-primary">Choose an APK file <span>↗</span></button>
+            <p id="apk-device-note" class="small-print" style="text-align:left">Use the installed CyberShield Android beta to choose an APK. The website cannot inspect installed apps.</p>
+            <div id="apk-result" role="status" aria-live="polite"></div>
+          </div>
+          <div class="cs-security-grid" id="cs-file-wifi-tools">
+            <section class="cs-security-card" aria-label="File security checker">
+              <h3>◈ Check files for warning signs</h3>
+              <p>Choose one file, up to 30 files, or an Android folder. CyberShield checks file signatures, names, and SHA-256 fingerprints. It does not execute the files or upload their contents.</p>
+              <input type="file" id="cs-browser-files" multiple aria-label="Select files to inspect" />
+              <button type="button" class="btn btn-primary" id="cs-choose-files" hidden>Choose files</button>
+              <button type="button" class="btn btn-secondary" id="cs-choose-folder" hidden>Check a folder (Android)</button>
+              <p id="cs-files-status" class="cs-info-note" role="status">No files checked. Full antivirus/spyware detection is not available.</p>
+              <label class="cyber-mini"><input id="cs-hash-consent" type="checkbox"/> I agree to send a selected file's SHA-256 fingerprint (not its contents) to my configured reputation service when I tap "Check fingerprint online".</label>
+              <div id="cs-files-results" aria-live="polite"></div>
+            </section>
+            <section class="cs-security-card" aria-label="Wi-Fi connection security check">
+              <h3>◉ Check Wi-Fi connection</h3>
+              <p>On Android, read the connected Wi-Fi's available encryption type and Android's internet-validation signal. No router passwords or traffic are collected.</p>
+              <button type="button" id="cs-wifi-check" class="btn btn-primary">Check my Wi-Fi</button>
+              <div class="cs-info-note cs-security-report" id="cs-wifi-result" aria-live="polite">Not checked yet. A Wi-Fi connection cannot be certified virus-free or scam-free.</div>
+            </section>
+          </div>
+          <div class="cs-phone-checklist" id="cs-phone-checklist"><h3>Phone security check (guided)</h3><p>Review Play Protect, Android security updates, device lock, accessibility services and unknown-app installers. These steps help spot risks but do not perform a full spyware scan.</p><button type="button" id="cs-playprotect" class="btn btn-secondary">How to run Google Play Protect</button><button type="button" id="cs-security-settings" class="btn btn-secondary">Open Android security settings</button><div id="cs-security-guidance" class="cs-security-report" role="status"></div></div><div class="hint"><strong>Apps already installed?</strong> Open Android Settings → Apps → Special app access to review powerful permissions, and use Google Play Protect to scan installed apps. CyberShield can list apps on your device after you request a scan in its Android beta. It does not secretly monitor them or detect actual permission use.</div>
+        </section>
+        <section class="page hidden" id="page-guide">
+          <div class="eyebrow">STAY PROTECTED / INDIA</div><h1 class="page-title">When in doubt,<br/><em>take control.</em></h1><p class="page-sub">Fast steps that can reduce damage when an online request feels wrong.</p>
+          
+        <section class="cs-easy-setup" aria-label="Floating Easy Touch setup">
+          <div class="cs-easy-setup-title"><span class="cs-easy-setup-symbol">✦</span><div><h3>Easy Touch · Your safety shortcut</h3><p>Android only: keep a draggable shield on screen while you use WhatsApp or other apps. Tap it to open tools instantly.</p></div></div>
+          <div class="cs-easy-setup-actions"><button class="btn btn-primary" id="cs-easy-enable" type="button">Enable floating shield</button><button class="btn btn-secondary" id="cs-easy-disable" type="button">Turn it off</button></div>
+          <div id="cs-easy-status" class="cyber-output" role="status" aria-live="polite">On the website, use the floating ✦ shortcut inside this page. Android overlay requires separate system permission.</div>
+          <p class="cyber-mini">Optional and never enabled by default. The bubble does not access chats, call logs, camera, microphone, screen pixels, or credentials. For screen checks, first save a screenshot and select it.</p>
+        </section>
+<div class="guide-grid"><div class="guide-card"><span class="step">01</span><h3>Stop and verify</h3><p>Do not click suspicious links, download APKs, reveal OTPs or enter a UPI PIN to receive money. Contact the organization independently.</p></div><div class="guide-card"><span class="step">02</span><h3>If money was lost</h3><p>Call India’s cybercrime helpline <strong>1930</strong> promptly and report at the National Cyber Crime Reporting Portal. Contact your bank immediately.</p></div><div class="guide-card"><span class="step">03</span><h3>If an account is compromised</h3><p>Change the password through the official app/site, sign out other sessions, turn on two-factor authentication and alert your bank if relevant.</p></div><div class="guide-card"><span class="step">04</span><h3>If you installed a suspicious app</h3><p>Disconnect from sensitive accounts, uninstall the app if possible, review permissions and seek reputable device-security help. Consider a reset if compromise is confirmed.</p></div></div>
+
+          <div class="cyber-tools">
+            <div class="cyber-tool"><h3>✦ Ask your Safety Companion</h3>
+              <p>Ask cyber safety questions privately. The currently available companion is an <strong>offline rule-based guide, not a generative AI system</strong>.</p>
+              <form id="companion-form"><textarea id="companion-question" placeholder="Example: Someone asked for my OTP and UPI PIN. What should I do?" maxlength="1000" required></textarea><button type="submit" class="btn btn-primary">Ask companion</button></form>
+              <label class="cyber-mini"><input id="ai-opt-in" type="checkbox" style="display:inline-block;width:auto"/> I consent to sending my question to the configured AI service. I removed personal secrets.</label>
+              <button type="button" class="btn btn-secondary" id="companion-online">Ask optional online AI</button>
+              <div id="companion-result" class="cyber-output" hidden aria-live="polite"></div></div>
+            <div class="cyber-tool"><h3>▤ Make an incident report</h3>
+              <p>Save plain-language incident notes to share with your bank or authorities yourself. The app does not submit any police report.</p>
+              <form id="report-form"><select id="report-type" aria-label="Report type"><option value="message">Suspicious message / fraud</option><option value="link">Suspicious link</option><option value="phone">Phone call / number</option></select><textarea id="report-evidence" maxlength="5000" placeholder="Describe the suspicious link, message or caller. Remove passwords, OTPs and personal IDs." required></textarea><button type="submit" class="btn btn-primary">Save incident notes</button></form>
+              <div id="report-result" class="cyber-output" hidden aria-live="polite"></div></div>
+            
+            <div class="cyber-tool cyber-tool--wide" id="updates-panel">
+              <h3>↻ App updates & online connection <span id="update-count-badge" class="cs-ver-pill">v0.9.3</span></h3>
+              <p>Updates are checked whenever this app opens (and when you press Check). A verified, published update feed is required. Install from the official release page only; never from a message or random APK link.</p>
+              <div class="cs-online-status"><span id="cs-connectivity-light" aria-hidden="true">●</span><span id="cs-connectivity-message">Checking server availability…</span></div>
+              <button id="cs-refresh-status" class="btn btn-secondary" type="button">Check internet features</button>
+              <button id="cs-check-update" class="btn btn-primary" type="button">Check for new version</button>
+              <button id="cs-update-alerts" class="btn btn-secondary" type="button" hidden>Enable daily update reminders</button>
+              <span id="cs-update-alert-state" class="cyber-mini"></span>
+              <div id="cs-update-details" class="cyber-output" role="status" aria-live="polite">Installed beta: v0.9.3. Update status not checked yet.</div>
+              <button id="cs-update-download" class="btn btn-primary" type="button" hidden>Download update in CyberShield</button>
+              <button id="cs-update-install" class="btn btn-primary" type="button" hidden>Install downloaded update</button>
+              <button id="cs-update-open" class="btn btn-secondary" type="button" hidden>View official release</button>
+              <p class="cyber-mini">Sideload beta: download and verify the official signed APK inside CyberShield, then explicitly approve installation in Android. Older debug APKs signed by another key cannot update in place; save local data before manually migrating. Play Store builds must use Google Play in-app updates.</p>
+            </div>
+<div id="reminder-panel" class="cyber-tool cyber-tool--wide"><h3>◷ Safety reminders — opt-in</h3>
+              <p>Get rotating, general cyber-safety tips on your Android phone at an approximate hourly or daily interval. These are NOT live crime alerts. Android may delay notifications to save battery.</p>
+              <select id="reminder-frequency"><option value="daily">Every day</option><option value="hourly">Approximately every hour</option></select>
+              <button id="reminder-start" class="btn btn-primary" type="button">Enable reminders</button><button id="reminder-stop" class="btn btn-secondary" type="button">Turn off reminders</button>
+              <div id="reminder-result" class="cyber-output" hidden aria-live="polite"></div>
+            </div>
+          </div>
+          <h2 class="section-title">Official reporting resources</h2><div class="resource-list"><a href="https://cybercrime.gov.in/" target="_blank" rel="noopener noreferrer"><div><strong>National Cyber Crime Reporting Portal</strong><p>cybercrime.gov.in</p></div><span>↗</span></a><a href="https://www.sancharsaathi.gov.in/" target="_blank" rel="noopener noreferrer"><div><strong>Sanchar Saathi</strong><p>Report suspicious calls and messages through official services</p></div><span>↗</span></a></div><div class="emergency-banner"><div><span>FINANCIAL CYBER FRAUD HELPLINE</span><strong>1930</strong></div><p>If you lost money, act quickly. CyberShield itself does not file reports or recover funds.</p></div>
+          <div class="cs-developer"><span class="cs-dev-label">Developer</span><a data-cs-developer href="https://www.instagram.com/aslam_07._/" target="_blank" rel="noopener noreferrer" aria-label="Open developer aslammubarak Instagram profile">aslammubarak ↗</a></div><footer class="footer">Resources are external official services. CyberShield India is an independent beta project.</footer>
+        </section>
+      </div>
+    </main>
+  </div>
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <button class="mobile-nav-btn active" type="button" data-page="home" aria-current="page"><span class="mobile-tab-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/></svg></span><span class="mobile-tab-label">Home</span></button>
+    <button class="mobile-nav-btn" type="button" data-page="links"><span class="mobile-tab-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7.1-7.1l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7.1 7.1l1.7-1.7"/></svg></span><span class="mobile-tab-label">Links</span></button>
+    <button class="mobile-nav-btn" type="button" data-page="messages"><span class="mobile-tab-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8A8.5 8.5 0 0 1 12.5 20a8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 3.9a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/><path d="M8 12h8M8 9h5"/></svg></span><span class="mobile-tab-label">Messages</span></button>
+    <button class="mobile-nav-btn" type="button" data-page="apps"><span class="mobile-tab-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M9 7h6M9 11h6M10 17h4"/></svg></span><span class="mobile-tab-label">Apps</span></button>
+    <button class="mobile-nav-btn" type="button" data-page="guide"><span class="mobile-tab-icon"><svg class="" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 22 1.3-4.4 4.4 1.3L16.4 14l4.3-2-4.3-2 1.3-4.9L13.3 6 12 1.5 10.7 6 6.3 5.1 7.6 10l-4.3 2 4.3 2-1.3 4.9 4.4-1.3L12 22Z"/></svg></span><span class="mobile-tab-label">Guide</span></button>
+  </nav>
+
+  <!-- Easy Touch is an in-page launcher in browsers. On Android the separate, optional
+       system-overlay bubble is available only after explicit system permission. -->
+  <div class="cs-easy-touch" id="cs-easy-touch">
+    <button type="button" class="cs-easy-bubble" id="cs-easy-bubble" aria-label="Open CyberShield quick safety tools" aria-expanded="false" aria-controls="cs-easy-panel" title="Quick Safety">✦</button>
+    <aside class="cs-easy-panel" id="cs-easy-panel" hidden aria-label="CyberShield quick safety tools">
+      <div class="cs-easy-head"><span>✦ &nbsp; EASY TOUCH</span><button type="button" id="cs-easy-close" aria-label="Close quick safety tools">×</button></div>
+      <p>Check something suspicious without searching through menus.</p>
+      <div class="cs-easy-grid">
+        <button type="button" data-easy-tool="link">🔗 <span>Check link</span></button>
+        <button type="button" data-easy-tool="phone">☎ <span>Check number</span></button>
+        <button type="button" data-easy-tool="screen">▣ <span>Screenshot</span></button>
+        <button type="button" data-easy-tool="qr">▦ <span>QR code</span></button>
+        <button type="button" data-easy-tool="apps">◫ <span>My apps</span></button>
+        <button type="button" data-easy-tool="report">⚑ <span>Report fraud</span></button>
+        <button type="button" data-easy-tool="guide">? <span>Safety guide</span></button>
+      </div>
+      <div class="cs-easy-foot">To check WhatsApp content, copy or share it to CyberShield. This tool does not read other apps automatically.</div>
+    </aside>
+  </div>
+  <script type="module" src="./app.mjs"></script><script type="module" src="./extras.mjs"></script><script type="module" src="./easy-touch.mjs"></script><script type="module" src="./online.mjs"></script><script type="module" src="./device-security.mjs"></script><script type="module" src="./trust-insights.mjs"></script>
+</body>
+</html>
