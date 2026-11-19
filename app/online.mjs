@@ -6,7 +6,7 @@ import { compareVersion, isTrustedReleasePage, newerRelease } from './release-po
 const $ = id => document.getElementById(id);
 const put=(id,message)=>{const e=$(id);if(e){e.hidden=false;e.textContent=String(message);}};
 const native=()=>typeof window.CyberShieldAndroid?.onlineRequest==='function';
-const APP_VERSION='0.9.3';
+const APP_VERSION='0.9.4';
 let latestRelease='',lastQRUrl='',counter=0;
 const pending=new Map();
 let status={reputationConfigured:false,phoneConfigured:false,remoteAIConfigured:false};
@@ -181,7 +181,7 @@ function installedVersion(){
   catch{return APP_VERSION;}
 }
 function installedVersionCode(){
-  try{return native() && window.CyberShieldAndroid.appVersionCode ? Number(window.CyberShieldAndroid.appVersionCode()) : 12;}
+  try{return native() && window.CyberShieldAndroid.appVersionCode ? Number(window.CyberShieldAndroid.appVersionCode()) : 14;}
   catch{return 9;}
 }
 let lastUpdateCheck=0;
