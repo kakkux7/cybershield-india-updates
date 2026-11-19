@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "channel": "beta",
-  "latestVersion": "0.9.3",
-  "versionCode": 13,
+  "latestVersion": "0.9.4",
+  "versionCode": 14,
   "published": true,
-  "releasePage": "https://github.com/kakkux7/cybershield-india-updates/releases/tag/v0.9.3",
-  "releaseNotes": "Connected CyberShield India to the live backend, improved online connection handling, security evidence reports, and web app access.",
-  "apkUrl": "https://github.com/kakkux7/cybershield-india-updates/releases/download/v0.9.3/CyberShield-India-v0.9.3.apk",
-  "apkSha256": "9fe5fdd6f201041fcc81b9e9537b68068b93e9d59edfb1ad6032e75d8d7c50d5"
+  "releasePage": "https://github.com/kakkux7/cybershield-india-updates/releases/tag/v0.9.4",
+  "releaseNotes": "CyberShield India v0.9.4 - Improved update checking, app security reports, and bug fixes. ,Gemini configuration",
+  "apkUrl": "https://github.com/kakkux7/cybershield-india-updates/releases/download/v0.9.4/CyberShield-India-v0.9.4.apk",
+  "apkSha256": "e71975c26d14a9253ee40394f6b349343b7ad303114b7c7246d05a377c523456"
 }
