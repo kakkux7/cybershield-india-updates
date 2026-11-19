@@ -111,10 +111,14 @@ async function connectivity(){
 }
 function formatLinkReport(data){
   const types=Array.isArray(data.threats)?data.threats:[];
-  if(types.length&&data.providerChecked)return `⚠ KNOWN THREAT FOUND (${types.join(', ')}). DO NOT OPEN THIS LINK. Source: ${data.source}.`;
+  if(types.length&&data.providerChecked){
+    const confirmed=Array.isArray(data.threatEvidence)?data.threatEvidence.map(x=>String(x.source||'')).filter(Boolean):[];
+    return `⚠ THREAT-LIST WARNING (${types.join(', ')}). Avoid opening or sharing this link.\nMatch reported by: ${confirmed.length?confirmed.join(', '):data.source||'connected threat feed'}.\nCommunity reports may contain false positives. Do not enter passwords, OTPs, or make payments until independently verified.`;
+  }
   const dns=data.dns||{};
   const name=data.host?'Domain: '+data.host+'\n':'';
-  return name+`Internet DNS check: ${dns.checked?(dns.resolves?'Domain resolves':'No IPv4 DNS record found'):'Not available'}.
+  const checked=[...(data.webRiskChecked?['Google Web Risk']:[]),...(Array.isArray(data.communitySources)?data.communitySources.filter(x=>x.checked).map(x=>x.source):[]),...(data.communityFeedChecked?['Community phishing database']:[])];
+  return name+`Threat databases checked: ${checked.length?checked.join(', '):'None available yet'}.\nInternet DNS check: ${dns.checked?(dns.resolves?'Domain resolves':'No IPv4 DNS record found'):'Not available'}.
 ${dns.detail||''}
 Verified malicious-link list: ${data.providerChecked?'Checked; no known threat match':'NOT CHECKED'}.
 ${data.providerWarning||''}
