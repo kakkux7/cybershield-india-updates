@@ -3,8 +3,7 @@
   "channel": "beta",
   "latestVersion": "0.9.1",
   "versionCode": 11,
-  "published": false,
-  "releasePage": "",
-  "releaseNotes": "No consistently signed public Android release is available yet. Please do not uninstall your working app only to chase a beta version.",
-  "releasedAt": null
+  "published": true,
+  "releasePage": "https://github.com/kakkux7/cybershield-india-updates/releases/tag/v0.9.1",
+  "releaseNotes": "CyberShield India v0.9.1 - Improved update checking, app security reports, and bug fixes."
 }
