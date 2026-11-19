@@ -34,6 +34,8 @@ if(typeof previousApps==='function')window.CyberShieldReceiveInstalledApps=funct
   if(perm.has('RECORD_AUDIO') && perm.has('CAMERA') && !app.system)suspicious.push('Both camera and microphone granted; check whether needed');
   if(perm.has('READ_CONTACTS') && perm.has('ACCESS_FINE_LOCATION') && !app.system)suspicious.push('Contacts and precise location both granted');
   if(app.debuggable && !app.system)suspicious.push('Debuggable build of a user-installed app');
+  if(!app.system && app.targetSdk && app.targetSdk<28)suspicious.push('Older Android target SDK; review whether maintained');
+  if(!app.system && req.has('REQUEST_INSTALL_PACKAGES'))suspicious.push('Requests permission to install other APKs; check special access');
   if(suspicious.length)observations.push({name:app.label||app.package,issues:suspicious});
  }
  const shown=observations.slice(0,12);target.hidden=false;target.replaceChildren();

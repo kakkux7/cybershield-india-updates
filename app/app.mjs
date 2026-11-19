@@ -108,6 +108,11 @@ window.CyberShieldReceiveApk = function(report) {
   (report.flags.length ? report.flags : ['No selected high-risk permissions found. This does NOT prove the app is safe.']).forEach(label => {
     const li = make('li'); li.append(make('p', null, label)); list.append(li);
   });
-  const info = make('p','result-footnote','File inspected locally, then the temporary copy is removed. Never install untrusted APKs solely based on these findings.');
-  result.append(heading, verdict, list, info);
+  const detail = make('p','result-footnote',
+    'Version: '+(report.version||'Unknown')+
+    ' · Target SDK: '+(report.targetSdk>=0?report.targetSdk:'Unknown')+
+    ' · SHA-256: '+(report.sha256||'Unavailable'));
+  const info = make('p','result-footnote',
+    'File inspected locally; temporary copy removed. The APK hash may be compared with an independently published hash. Neither a permission check nor an unsigned/unverified hash is a malware verdict.');
+  result.append(heading, verdict, list, detail, info);
 };
