@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "channel": "beta",
+  "latestVersion": "0.9.1",
+  "versionCode": 11,
+  "published": false,
+  "releasePage": "",
+  "releaseNotes": "No consistently signed public Android release is available yet. Please do not uninstall your working app only to chase a beta version.",
+  "releasedAt": null
+}
