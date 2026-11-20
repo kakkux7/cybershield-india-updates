@@ -1,5 +1,6 @@
 import {analyzeLink,analyzeMessage} from './detector.mjs';
-import {analyzePhone,analyzeQRPayload,buildReport,companionAdvice,explainAppPermission} from './intelligence.mjs';
+import {analyzePhone,analyzeQRPayload,parseUPIQR,buildReport,companionAdvice,explainAppPermission} from './intelligence.mjs';
+import {summarizePermissions} from './permission-dashboard.mjs';
 import {assessPhonePhishing} from './phone-phishing.mjs';
 const $=(s)=>document.querySelector(s);
 const bridge=()=>window.CyberShieldAndroid;
@@ -25,6 +26,33 @@ on('#phone-scam-check','click',()=>{try{
  const number=$('#phone-input').value;
  output('phone-phishing-result',reportView(assessPhonePhishing(number,$('#phone-scam-context')?.value||'')));
  }catch(error){showError('phone-phishing-result',error);}});
+const OFFICIAL_CALLER_LOOKUP='https://www.truecaller.com/reverse-phone-number-lookup';
+on('#cs-caller-lookup','click',()=>{
+ // A manual visit to a public tool, never automatic private number reverse-lookup.
+ if(bridge()?.openCallerLookup)bridge().openCallerLookup();
+ else window.open(OFFICIAL_CALLER_LOOKUP,'_blank','noopener,noreferrer');
+});
+window.addEventListener('CyberShieldQRDecoded',event=>{
+ const info=parseUPIQR(event.detail?.value||'');
+ const box=$('#cs-upi-inspection'),id=$('#cs-upi-id'),copy=$('#cs-upi-copy'),label=$('#cs-upi-copy-label');
+ if(!box||!id||!copy||!label)return;
+ box.hidden=!info;id.hidden=true;copy.hidden=true;label.hidden=true;id.value='';
+ if(!info)return;
+ box.textContent='UPI PAYMENT QR — NOT BANK VERIFIED\nUPI ID: '+(info.upiId||'Missing or malformed')+
+  '\nName entered in QR (UNVERIFIED): '+(info.claimedName||'Not provided')+
+  '\nAmount in QR (UNVERIFIED): '+(info.amount?'INR '+info.amount:'Not provided')+
+  '\n'+info.reason+(info.validFormat?'':'\nWARNING: Invalid UPI identifier or amount.');
+ if(info.upiId){id.value=info.upiId;id.hidden=false;copy.hidden=false;label.hidden=false;}
+});
+on('#cs-upi-copy','click',async()=>{
+ const input=$('#cs-upi-id');if(!input?.value)return;
+ let copied=false;
+ try{await navigator.clipboard.writeText(input.value);copied=true;}
+ catch{try{input.select();copied=document.execCommand('copy');}catch{}}
+ output('cs-upi-inspection',copied?
+ 'UPI ID copied. Independently verify the true beneficiary name in your official bank/UPI app. No payment was made.':
+ 'Select and copy the UPI ID above. Check the real bank beneficiary name in your payment app. No payment was made.');
+});
 on('#report-form','submit',async(e)=>{
  e.preventDefault();try{const result=buildReport($('#report-type').value,$('#report-evidence').value);output('report-result','Incident notes created locally. Nothing has been sent to authorities. Review and remove private information before sharing.');
  const blob=new Blob([result],{type:'text/plain;charset=utf-8'});const a=node('a');a.href=URL.createObjectURL(blob);a.download='cybershield-incident-notes.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),60000);
@@ -68,6 +96,33 @@ window.CyberShieldReceiveInstalledApps=(report)=>{
  const where=$('#installed-result');where.hidden=false;where.replaceChildren();
  if(!report?.ok){where.textContent=report?.error||'Unable to read installed apps';return;}
  const apps=Array.isArray(report.apps)?report.apps:[];
+  const overview=$('#cs-permissions-summary');
+  if(overview){
+    const data=summarizePermissions(apps);
+    overview.hidden=false;overview.replaceChildren();
+    overview.append(node('strong',data.visible+' visible apps reviewed locally. Counts describe reported grants or declarations, NOT actual camera/mic/screen usage.'));
+    for(const group of data.groups){
+      const details=node('details'),sum=node('summary',group.label+' — '+group.count);
+      details.append(sum,node('p',group.meaning));
+      if(!group.apps.length)details.append(node('p','None found in visible app metadata. This does not establish safety or absence of activity.'));
+      else{
+        const list=node('ul');
+        for(const app of group.apps){
+          const item=node('li',app.label+' ('+app.package+') ');
+          if(bridge()?.openPackageSettings){
+            const btn=node('button','Open app settings');btn.type='button';btn.className='btn btn-secondary';
+            btn.addEventListener('click',()=>bridge().openPackageSettings(app.package));
+            item.append(btn);
+          }
+          list.append(item);
+        }
+        details.append(list);
+      }
+      overview.append(details);
+    }
+    overview.append(node('p',data.limits));
+  }
+
  where.append(node('strong',`Visible apps: ${apps.length}. The results show permissions, NOT spying or malware proof.`));
  const counts={camera:0,mic:0,location:0,overlay:0,sms:0};
  for(const app of apps){const p=app.granted||[];if(p.includes('CAMERA'))counts.camera++;if(p.includes('RECORD_AUDIO'))counts.mic++;if(p.includes('ACCESS_FINE_LOCATION'))counts.location++;if((app.requested||[]).includes('SYSTEM_ALERT_WINDOW'))counts.overlay++;if(p.includes('READ_SMS'))counts.sms++;}

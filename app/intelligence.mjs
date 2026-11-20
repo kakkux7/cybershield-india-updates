@@ -16,19 +16,46 @@ export function analyzePhone(input) {
     summary:indian?'The number has the shape of an Indian mobile number. This does NOT verify the caller or tell us if they are a scammer.': 'The number format needs checking. Fraud status cannot be determined from digits alone.',
     formatted:indian?'+91 '+digits.slice(-10,-5)+' '+digits.slice(-5):raw};
 }
+/** Decode a payment request only. QR text and claimed names are not bank-verified. */
+export function parseUPIQR(input){
+ const raw=String(input??'').trim().slice(0,4096);
+ if(!/^upi:\/\/pay(?:\?|$)/i.test(raw))return null;
+ try{
+  const uri=new URL(raw);
+  if(uri.protocol!=='upi:'||uri.hostname!=='pay'||(uri.pathname&&uri.pathname!=='/'))return null;
+  const ids=uri.searchParams.getAll('pa');
+  const claimedNames=uri.searchParams.getAll('pn');
+  const upiId=String(ids[0]||'').trim();
+  const claimedName=String(claimedNames[0]||'').replace(/[\x00-\x1f\x7f]/g,' ').trim().slice(0,100);
+  const amount=String(uri.searchParams.get('am')||'').trim();
+  const validId=ids.length===1 && upiId.length<=125 &&
+    /^[a-zA-Z0-9][a-zA-Z0-9._-]*@[a-zA-Z0-9][a-zA-Z0-9._-]*$/.test(upiId);
+  const validAmount=amount===''||(/^\d{1,8}(?:\.\d{1,2})?$/.test(amount)&&Number(amount)>0);
+  return {upiId:validId?upiId:'',claimedName:claimedNames.length===1?claimedName:'',
+          amount:validAmount?amount:'',validFormat:validId&&validAmount,
+          bankVerified:false,reason:'Only an authorized bank/UPI app can verify the actual beneficiary name. Never enter a UPI PIN merely to check a QR.'};
+ }catch{return {upiId:'',claimedName:'',amount:'',validFormat:false,bankVerified:false,
+   reason:'Malformed payment QR. Do not pay.'};}
+}
+
 export function analyzeQRPayload(raw) {
   const value=String(raw||'').trim().slice(0,4096);
   if(!value) throw new Error('No readable QR data found.');
   if(/^https?:\/\//i.test(value) || /^[a-z\d.-]+\.[a-z]{2,}(?:\/|$)/i.test(value)) {
     return {...analyzeLink(value),source:'QR code',summary:'This QR opens a website. '+analyzeLink(value).summary};
   }
-  if(/^upi:\/\/pay\?/i.test(value)) {
-    const pa=decodeURIComponent((value.match(/[?&]pa=([^&]*)/i)||[])[1]||'');
-    const pn=decodeURIComponent((value.match(/[?&]pn=([^&]*)/i)||[])[1]||'');
-    return {level:'caution',label:'Payment QR — verify first',subject:'UPI payment request',
-      findings:[{heading:'This QR requests a UPI payment',detail:'Scanning a payment QR can ask you to SEND money. It is not a way to receive a refund.'},
-        {heading:'Recipient shown (unverified)',detail:'UPI ID: '+(pa||'not shown')+'. Display name: '+(pn||'not shown')+'. Check the name inside your official payment app.'}],
-      summary:'This appears to contain a UPI payment instruction. CyberShield cannot verify who owns the UPI ID or whether they are trustworthy.'};
+  const upi=parseUPIQR(value);
+  if(upi){
+    return {level:'caution',label:'UPI payment QR — verify in bank app',subject:'UPI payment request',
+      upiDetails:upi,
+      findings:[
+        {heading:'Recipient UPI ID (format only)',detail:upi.upiId||'Missing or malformed UPI ID — do NOT pay'},
+        {heading:'Name written inside QR (UNVERIFIED)',detail:upi.claimedName||'No name provided. QR names are caller-supplied, not bank-verified.'},
+        {heading:'Requested amount (UNVERIFIED)',detail:upi.amount?'INR '+upi.amount:'No valid amount specified; payment amount is not verified.'},
+        {heading:'Check actual bank beneficiary name',detail:'Copy the UPI ID and look it up in your official bank/UPI app. Compare the bank-provided name; DO NOT approve payment or enter UPI PIN merely to verify a QR.'},
+        ...(!upi.validFormat?[{heading:'Unexpected payment QR structure',detail:'The UPI identifier or amount is missing, duplicated or malformed. Treat this QR with extra caution.'}]:[])
+      ],
+      summary:'This QR contains a payment instruction. CyberShield cannot verify who owns the UPI ID or the true recipient name. Never trust the QR display name alone.'};
   }
   return {level:'unknown',label:'Unknown QR content',subject:'Non-website QR',findings:[{heading:'Not a website URL',detail:'The QR contains text or another type of data. Do not blindly follow instructions from strangers.'}],summary:'The QR was decoded, but its content cannot be independently verified.'};
 }

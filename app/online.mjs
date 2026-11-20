@@ -7,7 +7,7 @@ import { companionAdvice } from './intelligence.mjs';
 const $ = id => document.getElementById(id);
 const put=(id,message)=>{const e=$(id);if(e){e.hidden=false;e.textContent=String(message);}};
 const native=()=>typeof window.CyberShieldAndroid?.onlineRequest==='function';
-const APP_VERSION='0.9.7';
+const APP_VERSION='0.9.8';
 let latestRelease='',lastQRUrl='',counter=0;
 const pending=new Map();
 let status={reputationConfigured:false,phoneConfigured:false,remoteAIConfigured:false};
@@ -195,7 +195,7 @@ function installedVersion(){
   catch{return APP_VERSION;}
 }
 function installedVersionCode(){
-  try{return native() && window.CyberShieldAndroid.appVersionCode ? Number(window.CyberShieldAndroid.appVersionCode()) : 17;}
+  try{return native() && window.CyberShieldAndroid.appVersionCode ? Number(window.CyberShieldAndroid.appVersionCode()) : 18;}
   catch{return 9;}
 }
 let lastUpdateCheck=0;
@@ -249,6 +249,17 @@ $('link-form')?.addEventListener('submit',automaticDomainCheck);
 $('number-online')?.addEventListener('click',phoneLookup);
 $('qr-online')?.addEventListener('click',()=>lookupLink(lastQRUrl,'qr-online-result'));
 $('cs-check-update')?.addEventListener('click',()=>checkUpdates(true));
+window.CyberShieldUpdatePermissionChanged=(report)=>{
+  put('cs-update-install-setup-status',report?.message||'Android installation permission status unknown.');
+};
+if(native() && typeof window.CyberShieldAndroid.reviewUpdateInstallPermission==='function'){
+  const setup=$('cs-update-install-setup');
+  if(setup){
+    setup.hidden=false;
+    setup.addEventListener('click',()=>window.CyberShieldAndroid.reviewUpdateInstallPermission());
+  }
+}
+
 $('cs-refresh-status')?.addEventListener('click',connectivity);
 window.CyberShieldReceiveSignedUpdate=(result)=>{
   const state=result?.status||'error';
