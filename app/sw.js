@@ -9,5 +9,22 @@ self.addEventListener('fetch', event => {
     event.respondWith(fetch(event.request,{cache:'no-store'}).catch(()=>caches.match(event.request)));
     return;
   }
+  // Prefer current scripts/styles so existing users get published changes.
+  // Previously cached files remain available when the network is offline.
+  if (event.request.destination === 'script' || event.request.destination === 'style') {
+    event.respondWith((async () => {
+      try {
+        const response = await fetch(event.request,{cache:'no-store'});
+        if (response.ok) {
+          const cache = await caches.open(CACHE);
+          if (await cache.match(event.request)) await cache.put(event.request,response.clone());
+        }
+        return response;
+      } catch {
+        return (await caches.match(event.request)) || Response.error();
+      }
+    })());
+    return;
+  }
   event.respondWith(caches.match(event.request).then(found => found || fetch(event.request)));
 });
