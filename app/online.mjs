@@ -1,4 +1,5 @@
 import { compareVersion, isTrustedReleasePage, newerRelease } from './release-policy.mjs';
+import { companionAdvice } from './intelligence.mjs';
 /* CyberShield v0.7: verified-provider lookups when configured, keyless DNS evidence otherwise.
    Never mistake a DNS record, telephone number format, or absent match for a safety verdict.
    Automatic domain-only lookup transmits the HOSTNAME, not the full URL, after user asks to scan.
@@ -6,7 +7,7 @@ import { compareVersion, isTrustedReleasePage, newerRelease } from './release-po
 const $ = id => document.getElementById(id);
 const put=(id,message)=>{const e=$(id);if(e){e.hidden=false;e.textContent=String(message);}};
 const native=()=>typeof window.CyberShieldAndroid?.onlineRequest==='function';
-const APP_VERSION='0.9.5';
+const APP_VERSION='0.9.6';
 let latestRelease='',lastQRUrl='',counter=0;
 const pending=new Map();
 let status={reputationConfigured:false,phoneConfigured:false,remoteAIConfigured:false};
@@ -182,14 +183,19 @@ async function askAI(){
   if(!$('ai-opt-in')?.checked){put('companion-result','Consent required before sending a question to remote AI. Remove private details.');return;}
   put('companion-result','Consulting the configured online security assistant…');
   try{const data=await call('companion',{question:q});put('companion-result',(data.source||'AI')+' advice (NOT a verified security verdict):\n'+data.answer+'\n\n'+(data.important||'Do not share private data with AI.'));}
-  catch(e){put('companion-result','Remote AI request was unsuccessful: '+e.message+'. Use offline Safety Companion for immediate guidance.');}
+  catch(e){
+  // Keep the product usable without falsely labelling local rule-based help as Gemini AI.
+  let advice='';
+  try{advice=companionAdvice(q).answer;}catch{advice='Never share OTPs, passwords or UPI PINs; use official channels to verify.';}
+  put('companion-result','Live Gemini AI unavailable ('+String(e.message).slice(0,140)+').\nOFFLINE RULE-BASED SAFETY GUIDANCE (not AI, not verification):\n'+advice);
+}
 }
 function installedVersion(){
   try{return native() && window.CyberShieldAndroid.appVersion ? window.CyberShieldAndroid.appVersion() : APP_VERSION;}
   catch{return APP_VERSION;}
 }
 function installedVersionCode(){
-  try{return native() && window.CyberShieldAndroid.appVersionCode ? Number(window.CyberShieldAndroid.appVersionCode()) : 15;}
+  try{return native() && window.CyberShieldAndroid.appVersionCode ? Number(window.CyberShieldAndroid.appVersionCode()) : 16;}
   catch{return 9;}
 }
 let lastUpdateCheck=0;

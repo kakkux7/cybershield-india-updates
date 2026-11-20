@@ -1,5 +1,6 @@
 import {analyzeLink,analyzeMessage} from './detector.mjs';
 import {analyzePhone,analyzeQRPayload,buildReport,companionAdvice,explainAppPermission} from './intelligence.mjs';
+import {assessPhonePhishing} from './phone-phishing.mjs';
 const $=(s)=>document.querySelector(s);
 const bridge=()=>window.CyberShieldAndroid;
 const node=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=String(text);return e;};
@@ -15,7 +16,15 @@ const on=(selector,event,fn)=>{const e=$(selector);if(e)e.addEventListener(event
 function showError(id,e){output(id,'Unable to complete check: '+(e?.message||String(e)));}
 function updateFileReport(raw,kind){try{if(kind==='qr')window.dispatchEvent(new CustomEvent('CyberShieldQRDecoded',{detail:{value:String(raw)}}));const report=kind==='qr'?analyzeQRPayload(raw):analyzeMessage(raw);output(kind==='qr'?'qr-result':'screenshot-result',reportView(report));}catch(e){showError(kind==='qr'?'qr-result':'screenshot-result',e);}}
 
-on('#phone-form','submit',(e)=>{e.preventDefault();try{output('phone-result',reportView(analyzePhone($('#phone-input').value)));}catch(error){showError('phone-result',error);}});
+on('#phone-form','submit',(e)=>{e.preventDefault();try{
+ const number=$('#phone-input').value;
+ output('phone-result',reportView(analyzePhone(number)));
+ output('phone-phishing-result',reportView(assessPhonePhishing(number,$('#phone-scam-context')?.value||'')));
+ }catch(error){showError('phone-result',error);showError('phone-phishing-result',error);}});
+on('#phone-scam-check','click',()=>{try{
+ const number=$('#phone-input').value;
+ output('phone-phishing-result',reportView(assessPhonePhishing(number,$('#phone-scam-context')?.value||'')));
+ }catch(error){showError('phone-phishing-result',error);}});
 on('#report-form','submit',async(e)=>{
  e.preventDefault();try{const result=buildReport($('#report-type').value,$('#report-evidence').value);output('report-result','Incident notes created locally. Nothing has been sent to authorities. Review and remove private information before sharing.');
  const blob=new Blob([result],{type:'text/plain;charset=utf-8'});const a=node('a');a.href=URL.createObjectURL(blob);a.download='cybershield-incident-notes.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),60000);
