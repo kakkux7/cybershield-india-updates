@@ -7,7 +7,7 @@ import { companionAdvice } from './intelligence.mjs';
 const $ = id => document.getElementById(id);
 const put=(id,message)=>{const e=$(id);if(e){e.hidden=false;e.textContent=String(message);}};
 const native=()=>typeof window.CyberShieldAndroid?.onlineRequest==='function';
-const APP_VERSION='0.9.6';
+const APP_VERSION='0.9.7';
 let latestRelease='',lastQRUrl='',counter=0;
 const pending=new Map();
 let status={reputationConfigured:false,phoneConfigured:false,remoteAIConfigured:false};
@@ -195,10 +195,12 @@ function installedVersion(){
   catch{return APP_VERSION;}
 }
 function installedVersionCode(){
-  try{return native() && window.CyberShieldAndroid.appVersionCode ? Number(window.CyberShieldAndroid.appVersionCode()) : 16;}
+  try{return native() && window.CyberShieldAndroid.appVersionCode ? Number(window.CyberShieldAndroid.appVersionCode()) : 17;}
   catch{return 9;}
 }
 let lastUpdateCheck=0;
+let readyToInstall=false;
+let verifiedUpdateVersion='';
 async function checkUpdates(force=false){
   const current=installedVersion();
   const pill=$('update-count-badge');if(pill)pill.textContent='v'+current;
@@ -231,6 +233,7 @@ async function checkUpdates(force=false){
         $('cs-update-download').textContent=native()?'Download update in CyberShield':'Open official Android APK release';
       }
       if($('cs-update-banner'))$('cs-update-banner').hidden=false;
+      if($('cs-update-install'))$('cs-update-install').hidden=!(readyToInstall && verifiedUpdateVersion===data.latestVersion);
     } else put('cs-update-details',`Installed: v${current}. The official release feed reports v${data.latestVersion}. No newer compatible version is announced.\n${data.releaseNotes||''}`);
   }catch(e){
     put('cs-update-details',`Installed: v${current}. Could not verify updates: ${e.message}.\nUpdate status is UNKNOWN, not up to date.`);
@@ -247,19 +250,27 @@ $('number-online')?.addEventListener('click',phoneLookup);
 $('qr-online')?.addEventListener('click',()=>lookupLink(lastQRUrl,'qr-online-result'));
 $('cs-check-update')?.addEventListener('click',()=>checkUpdates(true));
 $('cs-refresh-status')?.addEventListener('click',connectivity);
-let readyToInstall=false;
 window.CyberShieldReceiveSignedUpdate=(result)=>{
   const state=result?.status||'error';
   put('cs-update-install-status',result?.message||'Installer status unknown.');
-  if(state==='ready'){readyToInstall=true;if($('cs-update-install'))$('cs-update-install').hidden=false;}
-  if(state==='error'){readyToInstall=false;if($('cs-update-install'))$('cs-update-install').hidden=true;}
+  if(state==='ready'){
+    readyToInstall=true;
+    verifiedUpdateVersion=String(result?.version||'');
+    if($('cs-update-install'))$('cs-update-install').hidden=false;
+  }
+  if(state==='error'){
+    readyToInstall=false;
+    verifiedUpdateVersion='';
+    if($('cs-update-install'))$('cs-update-install').hidden=true;
+  }
 };
 $('cs-update-download')?.addEventListener('click',()=>{
   if(!latestRelease)return;
   if(native() && typeof window.CyberShieldAndroid.downloadOfficialUpdate==='function'){
-    readyToInstall=false;if($('cs-update-install'))$('cs-update-install').hidden=true;
+    readyToInstall=false;verifiedUpdateVersion='';if($('cs-update-install'))$('cs-update-install').hidden=true;
     put('cs-update-install-status','Downloading and verifying official signed APK…');
-    window.CyberShieldAndroid.downloadOfficialUpdate();
+    try{window.CyberShieldAndroid.downloadOfficialUpdate();}
+    catch(e){put('cs-update-install-status','Could not start the signed APK download: '+String(e.message||e));}
   }else{
     window.open(latestRelease,'_blank','noopener,noreferrer');
   }
