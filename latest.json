@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "channel": "beta",
-  "latestVersion": "0.9.6",
-  "versionCode": 16,
+  "latestVersion": "0.9.7",
+  "versionCode": 17,
   "published": true,
-  "releasePage": "https://github.com/kakkux7/cybershield-india-updates/releases/tag/v0.9.6",
-  "releaseNotes": "Improved official update checking, fixed stale release information, clearer Gemini AI errors, and enhanced online AI reliability.The app's update feed will then announce the new signed release.",
-  "apkUrl": "https://github.com/kakkux7/cybershield-india-updates/releases/download/v0.9.6/CyberShield-India-v0.9.6.apk",
-  "apkSha256": "5202b5944e5e9a549f1553e024181aab387c2206f5a7a737d3f2fbae42cf049f"
+  "releasePage": "https://github.com/kakkux7/cybershield-india-updates/releases/tag/v0.9.7",
+  "releaseNotes": "Improved official update checking, fixed stale release information, clearer Gemini AI errors, and enhanced online AI reliability.The app's update feed will then announce the new signed release.The v0.9.7 repair is in GitHub source code but has not yet been published as a signed Android update.",
+  "apkUrl": "https://github.com/kakkux7/cybershield-india-updates/releases/download/v0.9.7/CyberShield-India-v0.9.7.apk",
+  "apkSha256": "0f28d2446773293b8fd40365d351b5d61e3c50b52aa8cd3197e235fc976bd473"
 }
