@@ -1,6 +1,37 @@
-:root{--cs-managed-accent:#77f0d0}
+/* Premium remote brand controls: allowlisted CSS variables only. */
+:root{--cs-managed-accent:#77f0d0;--cs-managed-bg:#061925;
+ --cs-managed-surface:#102735;--cs-managed-fg:#effff8;
+ --cs-managed-muted:#b4d2d0;--cs-managed-radius:16px;
+ --cs-managed-font-scale:1}
+.cs-managed{font-size:calc(14px * var(--cs-managed-font-scale));color:var(--cs-managed-fg)!important;background:var(--cs-managed-bg)!important}
+.cs-managed body{background:var(--cs-managed-bg)!important;color:var(--cs-managed-fg)!important}
+.cs-managed .main{background:var(--cs-managed-bg)!important}
+.cs-managed .sidebar,.cs-managed .topbar{background:var(--cs-managed-surface)!important}
+.cs-managed .welcome-panel{background:linear-gradient(130deg,var(--cs-managed-surface),var(--cs-managed-bg))!important;border-color:var(--cs-managed-accent)!important}
+.cs-managed .action-tile,.cs-managed .tool-card,.cs-managed .stat,
+.cs-managed .panel,.cs-managed .glass{background:var(--cs-managed-surface)!important;border-radius:var(--cs-managed-radius)!important}
 .cs-managed .brand-mark,.cs-managed .brand small,.cs-managed .eyebrow,
-.cs-managed .welcome-kicker{color:var(--cs-managed-accent)!important}
-.cs-managed-announcement{padding:13px 17px;margin:14px 0;color:#ecfff9;background:#123037;
-border-left:4px solid var(--cs-managed-accent);border-radius:10px;white-space:pre-wrap}
+.cs-managed .welcome-kicker,.cs-managed .section-kicker{color:var(--cs-managed-accent)!important}
+.cs-managed .btn-primary,.cs-managed .welcome-buttons .btn-primary,
+.cs-managed .nav-btn.active{background:var(--cs-managed-accent)!important;color:#061925!important}
+.cs-managed .btn,.cs-managed .action-tile,.cs-managed .nav-btn,
+.cs-managed .welcome-panel,.cs-managed .tool-card{border-radius:var(--cs-managed-radius)}
+.cs-managed .page-sub,.cs-managed .action-tile-description,.cs-managed .welcome-copy > p{color:var(--cs-managed-muted)!important}
+.cs-managed .action-tile-title,.cs-managed .welcome-copy h1{color:var(--cs-managed-fg)!important}
+.cs-managed-announcement{padding:13px 17px;margin:14px 0;color:var(--cs-managed-fg);
+ background:var(--cs-managed-surface);border-left:4px solid var(--cs-managed-accent);
+ border-radius:var(--cs-managed-radius);white-space:pre-wrap}
+.cs-managed .brand-mark{overflow:hidden}
+.cs-managed .brand-mark .cs-custom-logo{display:block;max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain}
+.cs-managed .brand-mark svg[hidden]{display:none}
+.cs-managed[data-cs-buttons="pill"] .btn{border-radius:999px!important}
+.cs-managed[data-cs-buttons="square"] .btn{border-radius:4px!important}
+.cs-managed[data-cs-density="compact"] .content{padding-top:18px!important}
+.cs-managed[data-cs-density="compact"] .action-tile{padding:12px!important}
+.cs-managed[data-cs-density="spacious"] .action-tile{padding:27px!important}
+.cs-managed[data-cs-density="spacious"] .content{padding-top:55px!important}
+.cs-usage-consent{margin:26px 0;padding:12px 15px;border:1px solid #315e5a;border-radius:12px;color:#bddbd2;background:#0b262a;font-size:12px}
+.cs-usage-consent label{display:flex;align-items:flex-start;gap:12px;line-height:1.6;cursor:pointer}
+.cs-usage-consent input{margin-top:3px;flex-shrink:0;accent-color:#7cecc5}
+.cs-usage-consent small{display:block;margin:5px 0 0 26px;color:#97b8b3}
 .action-tile[hidden],.cs-managed-announcement[hidden]{display:none!important}
