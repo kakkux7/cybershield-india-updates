@@ -201,8 +201,18 @@ function installedVersionCode(){
 let lastUpdateCheck=0;
 let readyToInstall=false;
 let verifiedUpdateVersion='';
+const playStoreBuild=()=>Boolean(native() && window.CyberShieldAndroid.isPlayStoreDistribution?.());
 async function checkUpdates(force=false){
   const current=installedVersion();
+  if(playStoreBuild()){
+    const pill=$('update-count-badge');if(pill)pill.textContent='v'+current;
+    put('cs-update-details','Installed: v'+current+'. This is the Google Play distribution. Android updates are delivered through Google Play, not by downloading APKs.');
+    for(const id of ['cs-update-open','cs-update-download','cs-update-install',
+       'cs-update-install-setup','cs-check-update','cs-update-alerts','cs-update-banner']){
+      const control=$(id);if(control)control.hidden=true;
+    }
+    return;
+  }
   const pill=$('update-count-badge');if(pill)pill.textContent='v'+current;
   if(!force && Date.now()-lastUpdateCheck<15*60*1000)return;
   lastUpdateCheck=Date.now();
@@ -252,7 +262,7 @@ $('cs-check-update')?.addEventListener('click',()=>checkUpdates(true));
 window.CyberShieldUpdatePermissionChanged=(report)=>{
   put('cs-update-install-setup-status',report?.message||'Android installation permission status unknown.');
 };
-if(native() && typeof window.CyberShieldAndroid.reviewUpdateInstallPermission==='function'){
+if(native() && !playStoreBuild() && typeof window.CyberShieldAndroid.reviewUpdateInstallPermission==='function'){
   const setup=$('cs-update-install-setup');
   if(setup){
     setup.hidden=false;
@@ -296,7 +306,7 @@ $('cs-update-open')?.addEventListener('click',()=>{
 });
 window.CyberShieldOnline={lookupLink,askAI,phoneLookup,connectivity,checkUpdates,compareVersion,dnsEvidence,request:call};
 window.CyberShieldUpdateAlertChanged=(enabled)=>put('cs-update-alert-state',enabled?'Daily update reminders enabled.':'Daily update reminders turned off.');
-if(native() && typeof window.CyberShieldAndroid.setUpdateAlerts==='function'){
+if(native() && !playStoreBuild() && typeof window.CyberShieldAndroid.setUpdateAlerts==='function'){
   const btn=$('cs-update-alerts');
   if(btn){
     btn.hidden=false;

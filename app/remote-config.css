@@ -1,0 +1,6 @@
+:root{--cs-managed-accent:#77f0d0}
+.cs-managed .brand-mark,.cs-managed .brand small,.cs-managed .eyebrow,
+.cs-managed .welcome-kicker{color:var(--cs-managed-accent)!important}
+.cs-managed-announcement{padding:13px 17px;margin:14px 0;color:#ecfff9;background:#123037;
+border-left:4px solid var(--cs-managed-accent);border-radius:10px;white-space:pre-wrap}
+.action-tile[hidden],.cs-managed-announcement[hidden]{display:none!important}
